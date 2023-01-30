@@ -1,0 +1,31 @@
+--Create a clothing store database
+
+CREATE TABLE clothing (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, size TEXT, color TEXT);
+
+INSERT INTO clothing VALUES (1,"hats",20,"Large","Blue");
+INSERT INTO clothing VALUES (2,"pants",50,"Medium","Light wash");
+INSERT INTO clothing VALUES (3,"polo",15,"small","black");
+INSERT INTO clothing VALUES (4,"shorts",25,"xsmall","green");
+INSERT INTO clothing VALUES (5,"headband",3,"osfm","beige");
+INSERT INTO clothing VALUES (6,"beanie",12,"osfm","red");
+INSERT INTO clothing VALUES (7,"belt",18,"medium","black");
+INSERT INTO clothing VALUES (8,"jacket",60,"large","brown");
+INSERT INTO clothing VALUES (9,"scarf",14,"osfm","purple");
+INSERT INTO clothing VALUES (10,"shoe",35,"small","yellow");
+INSERT INTO clothing VALUES (11,"flannel",46,"xlarge","grey");
+INSERT INTO clothing VALUES (12,"sandals",22,"medium","green");
+INSERT INTO clothing VALUES (13,"sweatpants",39,"large","white");
+INSERT INTO clothing VALUES (14,"sweater",55,"small","black");
+INSERT INTO clothing VALUES (15,"tank top",24,"large","pink");
+
+--Display the database ordered by price
+SELECT * FROM clothing
+ORDER BY price asc; 
+
+--Which items had a price of $25 or higher? 
+SELECT * FROM clothing 
+WHERE price >=25 
+ORDER BY price asc;
+
+--What was the average price of all items? 
+SELECT avg(price) FROM clothing;
