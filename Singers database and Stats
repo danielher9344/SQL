@@ -1,0 +1,30 @@
+--(Relational Query)
+--Create a database with popular singers and information about them.
+
+CREATE TABLE singers (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,age INTEGER,country TEXT);
+INSERT INTO singers (name,age,country) VALUES ("Adele",34,"UK");
+INSERT INTO singers (name,age,country) VALUES ("Mariah Carey",54,"US");
+INSERT INTO singers (name,age,country) VALUES ("Celine Dion",54,"Canada");
+INSERT INTO singers (name,age,country) VALUES ("Ricky Martin",51,"Puerto Rico");
+INSERT INTO singers (name,age,country) VALUES ("Luke Bryan",46,"US");
+
+CREATE TABLE top_songs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, genre TEXT);
+INSERT INTO top_songs (title,genre) VALUES ("Rolling in the deep","pop soul");
+INSERT INTO top_songs (title,genre) VALUES ("We belong together","pop");
+INSERT INTO top_songs (title,genre) VALUES ("My heart will go on", "pop");
+INSERT INTO top_songs (title,genre) VALUES ("Livin' la vida loca","latin pop");
+INSERT INTO top_songs (title,genre) VALUES ("One margarita","country");
+
+--Join the singers with their genre in a query.
+
+SELECT singers.name,singers.age,top_songs.title,top_songs.genre
+FROM singers 
+JOIN top_songs
+ON singers.id= top_songs.id;
+
+--Join the singers and their top songs 
+
+SELECT singers.name, top_songs.genre
+FROM singers 
+JOIN top_songs
+ON singers.id= top_songs.id;
