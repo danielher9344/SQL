@@ -1,0 +1,43 @@
+--DIGITAL MEDIA STORE ANALYTICS 
+
+
+--SHOW CUSTOMERS (FIRST NAME,LAST NAME,CUSTOMER ID, AND COUNTRY) WHO ARE NOT IN THE US
+SELECT CustomerId,FirstName,LastName,Country
+FROM chinook.customers
+WHERE Country <>'USA';
+
+--FIND THE INVOICES OF CUSTOMERS WHO ARE FROM BRAZIL. THE RESULTING TABLE SHOULD SHOW THE CUSTOMER'S FULLNAME, INVOICE ID, DATE OF INVOICE, AND BILLING COUNTRY.
+SELECT cust.FirstName,cust.LastName,inv.InvoiceId,inv.BillingCountry,inv.InvoiceDate
+FROM chinook.invoices as inv
+LEFT JOIN chinook.customers as cust
+ON inv.CustomerId = cust.CustomerId
+WHERE inv.BillingCountry = 'Brazil';
+
+--SHOW THE EMPLOYEES WHO ARE SALES AGENTS 
+SELECT * FROM chinook.employees 
+where Title = 'Sales Support Agent';
+
+--FIND A UNIQUE/DISTINCT LIST OF BILLING COUNTRIES FROM THE INVOICE TABLE.
+SELECT distinct BillingCountry FROM chinook.invoices;
+
+--SHOW THE INVOICES ASSOCIATED WITH EACH SALES AGENT. TABLE SHOULD INCLUDE SALES AGENT'S FULL NAME
+SELECT emp.LastName,emp.FirstName,inv.InvoiceId
+FROM chinook.employees emp
+JOIN chinook.customers cust 
+ON cust.SupportRepId= emp.EmployeeId
+JOIN chinook.invoices Inv
+ON Inv.CustomerId = cust.CustomerId;
+
+
+--SHOW THE INVOICE TOTAL,CUSTOMER NAME, COUNTRY, AND SALES AGENT NAME FOR ALL INVOICES AND CUSTOMERS
+SELECT emp.LastName, emp.FirstName, cust.FirstName AS Cust_FN ,cust.LastName AS Cust_LN,cust.Country,Inv.Total
+FROM chinook.employees emp
+JOIN chinook.customers cust
+ON emp.EmployeeId = cust.SupportRepId
+JOIN chinook.invoices Inv
+ON cust.CustomerId = Inv.CustomerId;
+
+--HOW MANY INVOICES WERE THERE IN 2009?
+SELECT COUNT(*)
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' and '2009-12-31';
